@@ -13,4 +13,4 @@ scikit-learn
 langchain-core
 langchain_groq
 langchain_huggingface
-ipykernel
+imghdr
