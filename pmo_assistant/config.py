@@ -51,29 +51,29 @@ def resolve_file(relative_name: str) -> Path:
     return BASE_DIR / relative_name
 
 
-# # Groq / LLM configuration
-# GROQ_API_KEY: str | None = os.getenv("GROQ_API_KEY")
+# Groq / LLM configuration
+GROQ_API_KEY: str | None = os.getenv("GROQ_API_KEY")
 
-# # Default model; can be overridden via env var
-# GROQ_MODEL: str = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
+# Default model; can be overridden via env var
+GROQ_MODEL: str = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
 
-# # Hugging Face / embeddings configuration
-# EMBEDDING_MODEL_NAME: str = os.getenv(
-#     "EMBEDDING_MODEL_NAME", "sentence-transformers/all-MiniLM-L6-v2"
-# )
+# Hugging Face / embeddings configuration
+EMBEDDING_MODEL_NAME: str = os.getenv(
+    "EMBEDDING_MODEL_NAME", "sentence-transformers/all-MiniLM-L6-v2"
+)
 
-# # If true, use Hugging Face Inference / Endpoint embeddings (requires HF API key).
-# # Otherwise, embeddings are computed locally via sentence-transformers.
-# USE_HF_ENDPOINT_EMBEDDINGS: bool = os.getenv("USE_HF_ENDPOINT_EMBEDDINGS", "0").strip() in (
-#     "1",
-#     "true",
-#     "True",
-#     "yes",
-#     "YES",
-# )
+# If true, use Hugging Face Inference / Endpoint embeddings (requires HF API key).
+# Otherwise, embeddings are computed locally via sentence-transformers.
+USE_HF_ENDPOINT_EMBEDDINGS: bool = os.getenv("USE_HF_ENDPOINT_EMBEDDINGS", "0").strip() in (
+    "1",
+    "true",
+    "True",
+    "yes",
+    "YES",
+)
 
-# # LangChain's HF endpoint embeddings read token from HUGGINGFACEHUB_API_KEY
-# HUGGINGFACEHUB_API_KEY: str | None = os.getenv("HUGGINGFACEHUB_API_KEY")
+# LangChain's HF endpoint embeddings read token from HUGGINGFACEHUB_API_KEY
+HUGGINGFACEHUB_API_KEY: str | None = os.getenv("HUGGINGFACEHUB_API_KEY")
 
 # =============================================================================
 # STREAMLIT CLOUD SECRETS (st.secrets) - CLOUD ONLY
@@ -81,36 +81,36 @@ def resolve_file(relative_name: str) -> Path:
 
 # import streamlit as st
 
-def get_cloud_config():
-    """Get config from st.secrets (Streamlit Cloud)."""
-    config = {
-        "GROQ_API_KEY": st.secrets.get("GROQ_API_KEY"),
-        "GROQ_MODEL": st.secrets.get("GROQ_MODEL", "llama-3.3-70b-versatile"),
-        "EMBEDDING_MODEL_NAME": st.secrets.get("EMBEDDING_MODEL_NAME", "sentence-transformers/all-MiniLM-L6-v2"),
-        "HUGGINGFACEHUB_API_KEY": st.secrets.get("HUGGINGFACEHUB_API_KEY"),
-        "USE_HF_ENDPOINT_EMBEDDINGS": st.secrets.get("USE_HF_ENDPOINT_EMBEDDINGS", "0")
-    }
+# def get_cloud_config():
+#     """Get config from st.secrets (Streamlit Cloud)."""
+#     config = {
+#         "GROQ_API_KEY": st.secrets.get("GROQ_API_KEY"),
+#         "GROQ_MODEL": st.secrets.get("GROQ_MODEL", "llama-3.3-70b-versatile"),
+#         "EMBEDDING_MODEL_NAME": st.secrets.get("EMBEDDING_MODEL_NAME", "sentence-transformers/all-MiniLM-L6-v2"),
+#         "HUGGINGFACEHUB_API_KEY": st.secrets.get("HUGGINGFACEHUB_API_KEY"),
+#         "USE_HF_ENDPOINT_EMBEDDINGS": st.secrets.get("USE_HF_ENDPOINT_EMBEDDINGS", "0")
+#     }
     
-    # FAIL if no GROQ key
-    if not config["GROQ_API_KEY"]:
-        raise ValueError(
-            "GROQ_API_KEY missing!\n"
-            "Streamlit Cloud → Settings → Secrets:\n"
-            'GROQ_API_KEY = "gsk_04LoNoA0..."'
-        )
+#     # FAIL if no GROQ key
+#     if not config["GROQ_API_KEY"]:
+#         raise ValueError(
+#             "GROQ_API_KEY missing!\n"
+#             "Streamlit Cloud → Settings → Secrets:\n"
+#             'GROQ_API_KEY = "gsk_04LoNoA0..."'
+#         )
     
-    return config
+#     return config
 
-# Load config
-config = get_cloud_config()
+# # Load config
+# config = get_cloud_config()
 
-# Replace ALL os.getenv calls
-GROQ_API_KEY: str = config["GROQ_API_KEY"]
-GROQ_MODEL: str = config["GROQ_MODEL"]
-EMBEDDING_MODEL_NAME: str = config["EMBEDDING_MODEL_NAME"]
-HUGGINGFACEHUB_API_KEY: str | None = config["HUGGINGFACEHUB_API_KEY"]
+# # Replace ALL os.getenv calls
+# GROQ_API_KEY: str = config["GROQ_API_KEY"]
+# GROQ_MODEL: str = config["GROQ_MODEL"]
+# EMBEDDING_MODEL_NAME: str = config["EMBEDDING_MODEL_NAME"]
+# HUGGINGFACEHUB_API_KEY: str | None = config["HUGGINGFACEHUB_API_KEY"]
 
-USE_HF_ENDPOINT_EMBEDDINGS: bool = config["USE_HF_ENDPOINT_EMBEDDINGS"].strip() in (
-    "1", "true", "True", "yes", "YES"
-)
+# USE_HF_ENDPOINT_EMBEDDINGS: bool = config["USE_HF_ENDPOINT_EMBEDDINGS"].strip() in (
+#     "1", "true", "True", "yes", "YES"
+# )
 
