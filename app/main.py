@@ -4,6 +4,12 @@ from datetime import date
 
 import streamlit as st
 
+import sys
+import os
+
+# FIX: Add root directory to Python path (pmo_assistant lives here)
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from pmo_assistant.agents import governance_agent, orchestrator, portfolio_agent, staffing_agent, template_agent
 from pmo_assistant.agents.staffing_agent import StaffingRequest
 from pmo_assistant.agents.template_agent import TemplateRequest, TemplateType
