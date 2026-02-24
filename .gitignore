@@ -1,0 +1,10 @@
+# SECRETS
+.env
+*.env
+
+# VENV
+.venv/
+venv/
+
+# CACHE
+__pycache__/

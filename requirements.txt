@@ -1,0 +1,15 @@
+streamlit==1.12.0
+altair<5
+pandas
+openpyxl
+python-docx
+python-pptx
+groq
+python-dotenv
+sentence-transformers
+numpy
+scikit-learn
+langchain-core
+langchain_groq
+langchain_huggingface
+ipykernel
