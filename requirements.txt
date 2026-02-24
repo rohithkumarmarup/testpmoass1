@@ -1,5 +1,5 @@
-Pillow==10.4.0
-streamlit==1.12.0
+Pillow
+streamlit
 altair<5
 pandas
 openpyxl
@@ -13,4 +13,4 @@ scikit-learn
 langchain-core
 langchain_groq
 langchain_huggingface
-imghdr
+standard-imghdr
